@@ -4,6 +4,7 @@ import (
 	"backup-x/entity"
 	"backup-x/util"
 	"fmt"
+	"golang.org/x/text/encoding/simplifiedchinese"
 	"io/ioutil"
 	"log"
 	"os"
@@ -182,6 +183,8 @@ func backup(backupConf entity.BackupConfig, encryptKey string, s3Conf entity.S3C
 
 	shellFile, err := os.Create(backupConf.GetProjectPath() + string(os.PathSeparator) + shellName)
 	shellFile.Chmod(0700)
+	encoder := simplifiedchinese.GBK.NewEncoder()
+	shellString, err = encoder.String(shellString)
 	if err == nil {
 		shellFile.WriteString(shellString)
 		shellFile.Close()
