@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+  backup-x:
+    build:
+      context: .
+    restart: always
+    container_name: backup-x
+    image: backup-x
+    volumes:
+      - ./backup-x-files:/app/backup-x-files
+    ports:
+      - "9977:9977"
