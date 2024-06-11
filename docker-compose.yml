@@ -7,6 +7,6 @@ services:
     container_name: backup-x
     image: backup-x
     volumes:
-      - ./backup-x-files:/app/backup-x-files
+      - ../backup-x-files:/app/backup-x-files
     ports:
       - "9977:9977"
